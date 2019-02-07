@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html ng-app="CustomerAllModules">
+<head>
+<meta charset="ISO-8859-1">
+<title>S & O coupons</title>
+
+<script src= "JS/angular.js" ></script>
+
+<script src= "JS/angular-ui-router.js" ></script>
+<script src="JS/bootstrap.js"></script>
+
+<script src= "JS/customerRoutingSystem.js" ></script>
+<script src= "JS/customerClientSideWebServer.js" ></script>
+
+<script src= "JS/getAllAndEveryCoupon.js" ></script>
+<script src= "JS/getAllCoupons.js" ></script>
+<link href="styles/bootstrap.css" rel="stylesheet" media="screen">
+
+  <link  href="styles/styleTable.css" rel="stylesheet"/> 
+
+
+</head>
+	<body >
+		<table class="externalLayout">
+			<tbody>
+				<tr>
+					<td>
+						<img src="images/coupons.jpg" alt="A Nice Picture" width="400" height="150">
+					</td>
+					<td>
+						<img src="images/poh.jpg" alt="A Nice Picture" width="900" height="150">
+					</td>
+				</tr>
+				</tvody>
+				</table>
+				<table>
+				<tbody>
+				<tr>
+		
+				<td >
+									<img src="images/welcome.gif" alt="A Nice Picture" width="350" height="150" align="top">
+									<h3 ui-sref="getAllCoupons" ui-sref-active="activeState" class="mousechange">My Coupons</h3> 
+	              		<h3 ui-sref="resturants" ui-sref-active="activeState" class="mousechange">Restaurants</h3> 
+	              		<h3 ui-sref="foodAndGroceries" ui-sref-active="activeState" class="mousechange">Food & Groceries</h3>
+	              		<h3 ui-sref="electronics" ui-sref-active="activeState" class="mousechange">Electronics</h3> 
+	              		<h3 ui-sref="healthAndBeauty" ui-sref-active="activeState" class="mousechange">Health & Beauty</h3> 
+	              		<h3 ui-sref="fashionAndSports" ui-sref-active="activeState" class="mousechange">Fashion & Sports</h3> 
+	              	   	<h3 ui-sref="travel" ui-sref-active="activeState" class="mousechange">Travel</h3> 
+		         	   	<h3 ui-sref="camping" ui-sref-active="activeState" class="mousechange">Camping</h3> 
+					<img src="images/LogOut.gif" alt="A Nice Picture" width="90" height="40" ng-click="logout=true">
+					<div ng-show = "logout" my-logout-directive></div>
+				</td>
+				<td width ="50px">
+				</td>
+				<td>
+				
+										<div  id="all_functions" class="mainBody"> 
+											<ui-view></ui-view>
+										</div>
+				</td>
+</tr>
+				
+			</tbody>
+		</table>		
+	</body>
+</html>
+
+
+
