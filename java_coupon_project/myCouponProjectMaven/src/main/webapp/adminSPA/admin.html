@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="AdminAllModules">
+<head>
+<meta charset="ISO-8859-1">
+<title>S & O coupons</title>
+
+<script src= "JS/angular.js" ></script>
+
+<script src= "JS/angular-ui-router.js" ></script>
+
+<script src= "JS/adminRoutingSystem.js" ></script>
+<script src= "JS/adminClientSideWebServer.js" ></script>
+
+<script src="JS/bootstrap.js"></script>
+<script src= "JS/getAllCompanies.js" ></script>
+<script src= "JS/getAllCustomers.js" ></script>
+
+<link  href="styles/styleTable.css" rel="stylesheet"/>
+<link href="styles/bootstrap.css" rel="stylesheet" media="screen">
+
+</head>
+	<body >
+	
+		<table >
+			<tbody>
+				<tr>
+					<td>
+						<img src="images/coupons.jpg" alt="A Nice Picture" width="400" height="200">
+					</td>
+					<td>
+						<img src="images/poh.jpg" alt="A Nice Picture" width="900" height="200">
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<table >
+			<tbody>
+				<tr>
+			
+					<td >
+											<img src="images/AdminLogo.png" alt="A Nice Picture" width="250" height="400">
+						<img src="images/LogOut.gif" alt="A Nice Picture" width="90" height="40" ng-click="logout=true">
+					<div ng-show = "logout" my-logout-directive></div>
+					</td>
+					<td width = "30px">
+					</td>
+					<td>
+						<table>
+		    				<tbody>
+		    					<tr>
+		    						<td width="4000px">
+		    						&nbsp;&nbsp;
+										<font ui-sref="getAllCompanies" ui-sref-active="activeState" size = "6" style= "cursor: pointer;"> All Companies</font> 
+										&nbsp;&nbsp;
+									   	<font ui-sref="getAllCustomers" ui-sref-active="activeState" size = "6" style= "cursor: pointer;">All Customers</font>		
+										
+				 					</td>
+					       		</tr>		
+								<tr>
+									<td>
+		       					
+											<ui-view></ui-view>
+									</td>
+								
+								</tr>
+							</tbody>
+						</table>
+					</td>
+				</tr>	
+			</tbody>
+		</table>		
+	</body>
+</html>

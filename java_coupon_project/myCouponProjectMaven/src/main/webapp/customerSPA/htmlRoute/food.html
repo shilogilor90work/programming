@@ -1,0 +1,27 @@
+<div>
+	<div ng-controller="getAllAndEveryCouponsController as getAllAndEveryCouponsAsController">
+			<h1 >Food & Groceries</h1>
+			<br>
+			<input type="text" placeholder="Search title" ng-model="searchText.title"/>
+           <input type="text" placeholder="Search id" ng-model="searchText.id"/>           
+          <table class="tblMain">
+        <tbody>
+            <tr ng-repeat="coupon in getAllAndEveryCouponsAsController.coupons | filter: { type : 'food'} | filter : searchText:match | orderBy: sorting:reverseSorting | limitTo:7" >
+             <td> 
+					<img src ={{coupon.image}} alt = "this coupon image can not load" width="250" height="250">        
+              </td>
+              <td width = "30px">
+              </td>
+              <td>
+   				<b>   {{coupon.title}} </b><br>
+                  expiration date:   {{coupon.endDate}} <br>
+    	          price:   {{coupon.price |currency}} <br>
+    	                           <img src = "images/purchase-nsf.jpg" class="mousechange" ng-click="getAllAndEveryCouponsAsController.purchaseCoupon(coupon)" width = "80" height = "30"> <br> 
+					<br>
+					<br>
+              </td>
+            </tr>
+          </table>
+			{{getAllAndEveryCouponsAsController.message}}
+	</div>
+</div>

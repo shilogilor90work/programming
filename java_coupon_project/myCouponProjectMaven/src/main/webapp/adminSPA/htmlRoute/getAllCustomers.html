@@ -1,0 +1,88 @@
+<div ng-controller="getAllCustomersController">
+<table>
+<tr>
+<td>
+
+    <input type="text" placeholder="Search name" ng-model="searchText.custName"/>
+    <input type="text" placeholder="Search id" ng-model="searchText.id"/>
+    <br> 
+	<input type="checkbox" ng-model="hidePassword"/> hide password
+	<table class="tblMain">
+    	<thead>
+    	    <tr style= "cursor: pointer;">              
+            	<th ng-click="sortData('id')">id <div ng-class="getSortClass('id')"></div></th>
+                <th ng-click="sortData('name')">name <div ng-class="getSortClass('name')"></div></th>
+                <th ng-hide="hidePassword" ng-click="sortData('password')">password<div ng-class="getSortClass('password')"></div></th>
+                <th ng-show="hidePassword" ng-click="sortData('password')">password<div ng-class="getSortClass('password')"></div></th>
+            </tr>
+        </thead>
+        <tbody>
+             <tr >
+           	     <td>
+                    <b>   create new customer</b>
+          	     </td>
+                 <td>
+              		<form name = "createCustomerNameForm" novalidate>
+           				<input type ="text" name = "customerName" ng-model="getAllCustomersAsController.customerName" placeholder="customer name"  ng-required="true">             
+    				
+			 		</form>
+				 </td>   
+             	 <td>
+         			<form name = "createCustomerPasswordForm" novalidate>
+	              			<input type ="text" name = "customerPassword" ng-model="getAllCustomersAsController.customerPassword" placeholder="customer password" ng-required="true">
+	              
+	       	 		</form>
+              	</td>
+             	<td>
+        	    	<input type="button" value="create" ng-click="getAllCustomersAsController.createFunction()" ng-disabled = "createCustomerNameForm.$invalid || createCustomerPasswordForm.$invalid ">
+				</td>
+		 	</tr>
+            <tr ng-repeat="customer in getAllCustomersAsController.customers | filter : searchText:match | orderBy: sorting:reverseSorting | limitTo:7">
+           	   <td>
+                    {{customer.id}}
+           	   </td>     
+				<td>
+                       {{customer.custName}}
+              	</td>
+              	<td ng-hide="hidePassword || getAllCustomersAsController.update">
+                     {{customer.password}}
+              	</td>
+              	 <td ng-show="getAllCustomersAsController.update">
+                      <form name = "updateCustomerPasswordForm" novalidate>
+ 	       	        	    <input type="text" name= "updateCustomerPassword" ng-model="customer.passup" placeholder="customer password" ng-required="true">
+ 	    			</form>
+             	 </td>
+             	 <td ng-show="hidePassword && !getAllCustomersAsController.update">
+              	       ####
+              	 </td>
+                 <td ng-hide="getAllCustomersAsController.update">
+      		  	    <input type="button" value="update" ng-click="getAllCustomersAsController.updateFunction()" >
+				</td>
+			    <td ng-show="getAllCustomersAsController.update">
+        		    <input type="button" value="Apply" ng-click="getAllCustomersAsController.applyFunction(customer.custName , $index)" ng-disabled = "updateCustomerPasswordForm.$invalid">
+				</td>
+				<td ng-hide="getAllCustomersAsController.update">
+            		<input type="button" value="remove" ng-click="getAllCustomersAsController.removeFunction(customer)" >
+				</td>
+				<td ng-show="getAllCustomersAsController.update">
+            		<input type="button" value="cancelUpdate" ng-click="getAllCustomersAsController.cancelFunction()" >
+				</td>
+		    </tr>
+          </table>
+</td>
+<td>
+<div ng-show = "(createCustomerNameForm.customerName.$touched && createCustomerNameForm.customerName.$invalid) || (createCustomerPasswordForm.customerPassword.$touched && createCustomerPasswordForm.customerPassword.$invalid)">
+							<img src="images/error.gif" alt="A Nice Picture" width="350" height="350">             
+						</div>
+						<div ng-show = "updateCustomerPasswordForm.updateCustomerPassword.$touched && updateCustomerPasswordForm.updateCustomerPassword.$invalid">
+ 														<img src="images/error.gif" alt="A Nice Picture" width="350" height="350">             
+ 						
+ 							</div> 
+</td>
+
+</tr>
+</table>
+
+        	  {{getAllCustomersAsController.message}}
+
+</div>

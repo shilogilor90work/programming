@@ -1,0 +1,41 @@
+
+<h1>My Coupons</h1>
+<br><br>
+<div ng-controller="getAllCouponsController as getAllCouponsAsController">
+
+		   <input type="text" placeholder="Search title" ng-model="searchText.title"/>
+           <input type="text" placeholder="Search id" ng-model="searchText.id"/>
+           <input type="text" placeholder="Search type" ng-model="searchText.type"/>
+     <!--       <input type="number" placeholder="Search price" ng-model="wantedPrice"/> -->
+           
+         <br>
+                  <br>
+         
+<table class="tblMain">
+          
+             <!-- ng-if ="wantedPrice < coupon.price" -->
+            <tr ng-repeat="coupon in getAllCouponsAsController.coupons | filter : searchText:match  | limitTo:7" >
+                <td> 
+					<img src ={{coupon.image}} alt = "this coupon image can not load" width="250" height="250">        
+              
+                
+                
+              </td>
+              <td width = "30px">
+              </td>
+              
+          
+              <td>
+                    <b>   {{coupon.title}} </b><br>
+                  expiration date:   {{coupon.endDate}} <br>
+    	          price:   {{coupon.price |currency}} <br>
+                       
+                       
+					<br>
+					<br>
+              </td>
+            </tr>
+          </table>
+                    {{getAllCouponsAsController.message}}
+          
+</div>

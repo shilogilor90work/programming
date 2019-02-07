@@ -1,0 +1,102 @@
+
+
+<div ng-controller="getAllCompaniesController as getAllCompaniesAsController">
+  <table>
+<tr>
+<td>
+  
+    <input type="text" placeholder="Search name" ng-model="searchText.compName"/>
+    <input type="text" placeholder="Search id" ng-model="searchText.id"/>
+    <input type="text" placeholder="Search email" ng-model="searchText.email"/>
+    <br>
+	<input type="checkbox" ng-model="hidePassword"/> hide password
+	<br>
+	<table class="tblMain table-hover">
+       <thead>
+           <tr style= "cursor: pointer;">
+                <th ng-click="sortData('id')">id <div ng-class="getSortClass('id')"></div></th>
+                <th ng-click="sortData('name')">name <div ng-class="getSortClass('name')"></div></th>
+                <th ng-hide="hidePassword" ng-click="sortData('password')">password<div ng-class="getSortClass('password')"></div></th>
+                <th ng-show="hidePassword" ng-click="sortData('password')">password<div ng-class="getSortClass('password')"></div></th>
+                <th ng-click="sortData('email')">email <div ng-class="getSortClass('email')"></div></th>
+                <th > update </th>
+                <th>  remove </th>
+             </tr>
+         </thead>
+         <tbody>
+            <tr >
+              <td>
+                 <b>   create new company</b>
+              </td>
+              <td>
+                   <form name = "createCompanyNameForm" novalidate>
+      					<input type ="text" name = "companyName" ng-model="getAllCompaniesAsController.companyName" placeholder="company name" ng-required="true">
+			
+					</form>
+			 </td>   
+              <td>
+                  <form name = "createCompanyPasswordForm" novalidate>
+        				<input type ="text" name= "companyPassword" ng-model="getAllCompaniesAsController.companyPassword" placeholder="company password" ng-required="true">
+       
+            	</form>
+              </td>
+              <td>
+              	  <form name = "createCompanyEmailForm" novalidate>
+						<input type ="email" name="companyEmail" ng-model="getAllCompaniesAsController.companyEmail" placeholder="company email" ng-required="true">
+  
+       			</form>
+     		 </td>
+             <td>
+        	    <input type="button" value="create" ng-click="getAllCompaniesAsController.createFunction()" ng-disabled = "createCompanyNameForm.$invalid || createCompanyPasswordForm.$invalid || createCompanyEmailForm.$invalid " >
+			</td>
+		 </tr>
+         <tr ng-repeat="company in getAllCompaniesAsController.companies | filter : searchText:match | orderBy: sorting:reverseSorting  | limitTo:7">
+              <td>
+                    {{company.id}}
+              </td>
+              <td>
+                   {{company.compName}}
+              </td>
+              <td ng-hide="hidePassword || update">
+                     {{company.password}}
+              </td>
+              <td ng-show="update">
+     	          <form name = "updateCompanyPasswordForm" novalidate>
+ 	    			    <input type="text" name = "updateCompanyPassword" ng-model="company.passup" placeholder="company password" ng-required="true">
+      			  </form>
+	          </td>
+              <td ng-show="hidePassword && !update">
+                     ####
+              </td>
+              <td ng-hide="update">
+     				{{company.email}}
+         	  </td>
+         	  <td ng-show="update">
+                 <form name = "updateCompanyEmailForm" novalidate>
+           		    <input type="email" name= "updateCompanyEmail" ng-model="company.emup" placeholder="company email" ng-required="true">
+            	 </form>
+          	</td>
+            <td ng-hide="update">
+        	    <input type="button" value="update" ng-click="getAllCompaniesAsController.updateFunction()" >
+			</td>
+		    <td ng-show="update">
+        	    <input type="button" value="Apply" ng-click="getAllCompaniesAsController.applyFunction(company.compName , $index)" ng-disabled = "updateCompanyPasswordForm.$invalid || updateCompanyEmailForm.$invalid" >
+			</td>
+			<td ng-hide="update">
+            	<input type="button" value="remove" ng-click="getAllCompaniesAsController.removeFunction(company)" >
+			</td>
+			<td ng-show="update">
+            	<input type="button" value="cancelUpdate" ng-click="getAllCompaniesAsController.cancelFunction()" >
+			</td>
+        </tr>
+    </table>
+    </td>
+<td>
+<div ng-show = "(createCompanyEmailForm.companyEmail.$touched && createCompanyEmailForm.companyEmail.$invalid) || (createCompanyPasswordForm.companyPassword.$touched && createCompanyPasswordForm.companyPassword.$invalid) || (createCompanyNameForm.companyName.$touched && createCompanyNameForm.companyName.$invalid)">
+							<img src="images/error.gif" alt="A Nice Picture" width="350" height="350">             
+						</div>
+</td>
+</tr>
+</table>
+   {{getAllCompaniesAsController.message}}        
+</div>
