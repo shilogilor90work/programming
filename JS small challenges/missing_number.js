@@ -8,10 +8,10 @@ function solution(A) {
 	else if(mode == 0) sum=1
 	else if(mode == 1) sum=len + 2
 	else if(mode == 2) sum=0
-    for (i=0;i<len;i++)
+    for (i=0;i<len;i++ )
     {
         sum = sum ^ A[i]
     }
 console.log(sum)
-var time = console.timeEnd('profile');    
+var time = console.timeEnd('profile');
 }
