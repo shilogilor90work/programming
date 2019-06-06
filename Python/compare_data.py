@@ -52,7 +52,7 @@ def getStoreName(store_id):
 def getData(store_id):
     print ("✓ Started Query for store number: {0} <{1}>".format(store_id, datetime.now().strftime('%Y-%m-%d_%H-%M-%S')))
     try:
-        cnx = mc.connect(user='mmalka', password='MosheIsTheUFCChampion', host='reader-db.wiser.com', database='wp_data_prod')
+        cnx = mc.connect(user='sgilor', password='ImAGoldenBoi', host='reader-db.wiser.com', database='wp_data_prod')
     except Exception as e:
         print ("Error connecting to DB")
         print (e)

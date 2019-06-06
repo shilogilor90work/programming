@@ -58,11 +58,8 @@ def train_neural_network(x):
     number_of_epochs = 30
     with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-
-
         for epoch in range(number_of_epochs):
             epoch_loss = 0
-
             i = 0
             while i < len(train_x):
                 start = i
